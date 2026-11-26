@@ -1,0 +1,57 @@
+/* Sky Courier — page chrome around the canvas. The game itself draws
+   everything on the canvas; this only centres it and holds the touch pads. */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #0b1526; }
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #e8eef4;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.stage {
+  width: min(1280px, 100vw);
+  padding: 12px;
+}
+#game {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.55);
+  background: #7ec8f7;
+  touch-action: none;
+}
+.hint {
+  text-align: center;
+  font-size: 14px;
+  color: #9fb4c8;
+  margin: 10px 0 0;
+}
+.touch {
+  display: none;
+  margin-top: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.touch button {
+  font: bold 16px system-ui, sans-serif;
+  color: #fff;
+  background: #1d3a5f;
+  border: 2px solid #3d6a99;
+  border-radius: 10px;
+  padding: 16px 0;
+  cursor: pointer;
+}
+.touch button:active { background: #f5b301; color: #1a1200; }
+@media (pointer: coarse) {
+  .touch { display: grid; }
+  .hint { display: none; }
+}
+/* Screenshot mode (?shot=): the canvas alone fills the frame, so the whole
+   game — HUD instruments included — is in the capture. */
+body.shot { display: block; }
+body.shot .stage { width: 100vw; padding: 0; }
+body.shot #game { width: 100vw; height: 100vh; border-radius: 0; box-shadow: none; }
+body.shot .hint, body.shot .touch { display: none; }
